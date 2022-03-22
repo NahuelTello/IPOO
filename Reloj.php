@@ -42,9 +42,9 @@ class Reloj{
     }
 
     public function puesta_a_cero(){
-        $this->setHora(0);
-        $this->setMinutos(0);
-        $this->setSegundos(0);
+        $this->setHora(00);
+        $this->setMinutos(00);
+        $this->setSegundos(00);
     }
 
     /**
@@ -60,17 +60,17 @@ class Reloj{
             $segundos_int++;
             $this->setSegundos($segundos_int);
         } else {
-            $this->setSegundos(0);
+            $this->setSegundos(00);
             $minutos_int++;
             if ($minutos_int < 59) { //Si los minutos son menores a 59 min
                 $this->setMinutos($minutos_int);
             } else {
-                $this->setMinutos(0);
+                $this->setMinutos(00);
                 $hora_int++;
                 if($hora_int<23){
                     $this->setHora($hora_int);
                 }else {
-                    $this->setHora(0);
+                    $this->setHora(00);
                 }
             }
         }

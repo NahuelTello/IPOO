@@ -2,9 +2,9 @@
 include 'Reloj.php';
 
 $finalizar = false;
-$hora = 0;
-$minutos = 0;
-$segundos = 0;
+$hora = 00;
+$minutos = 00;
+$segundos = 00;
 $reloj = new Reloj($hora, $minutos, $segundos);
 
 do{
@@ -16,7 +16,7 @@ do{
     switch ($opcion) {
         case 1:
             $reloj->puesta_a_cero();
-            echo "Reloj establecido: ".$reloj->__toString();
+            echo "Reloj establecido: ".$reloj->__toString()."\n";
             $finalizar = false;
             break;
         case 2:
