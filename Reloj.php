@@ -55,10 +55,29 @@ class Reloj{
         $hora_int = $this->getHora();
         $minutos_int = $this->getMinutos();
         $segundos_int = $this->getSegundos();
+
+        if ($segundos_int < 59) { //Si los segundos son menores a 59 seg
+            $segundos_int++;
+            $this->setSegundos($segundos_int);
+        } else {
+            $this->setSegundos(0);
+            $minutos_int++;
+            if ($minutos_int < 59) { //Si los minutos son menores a 59 min
+                $this->setMinutos($minutos_int);
+            } else {
+                $this->setMinutos(0);
+                $hora_int++;
+                if($hora_int<23){
+                    $this->setHora($hora_int);
+                }else {
+                    $this->setHora(0);
+                }
+            }
+        }
     }
 
     public function __toString()
     {
-        
+        return "{$this->getHora()}:{$this->getMinutos()}:{$this->getSegundos()}" ;
     }
 }
