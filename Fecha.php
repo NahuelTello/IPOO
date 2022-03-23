@@ -41,5 +41,55 @@ class Fecha{
     public function setDia($diaSet){
         $this->dia = $diaSet;
     }
+
+    /**
+     * @param int $mesSet
+     * @return int
+     */
+    public function setMes($mesSet)
+    {
+        $this->mes = $mesSet;
+    }
+
+    /**
+     * @param int $anioSet
+     * @return int
+     */
+    public function setAnio($anioSet)
+    {
+        $this->anio = $anioSet;
+    }
+
+
+    //public function fecha
+
+
+/* Implementar una función incremento, que reciba como parámetros un entero y una fecha, 
+que retorne una nueva fecha, resultado de incrementar la fecha recibida por parámetro en el numero de días definido por el parámetro entero. */
+    /**
+     * Incrementa los dias segun los ingresados y devuelve una nueva fecha
+     *  fecha $dia/$mes/$anio
+     * @param int $cantDias 
+     * @return String
+    */
+    public function incrementar_un_ida($cantDias){
+
+        $dia_int = $this->getDia(); //Objeto dia
+        $mes_int = $this->getMes(); //Objeto mes
+        $anio_int = $this->getAnio(); //Objeto año
+        //$fechaNueva;
+        for ($i=1; $i <= $cantDias ; $i++) { 
+            $dia_int++;
+            $this->setDia($dia_int);
+            $nueva_fecha = $this->fecha = "{$this->setDia($dia_int)}/{$mes_int}/{$anio_int}";
+        }
+        return $nueva_fecha;
+    }   
+
+
+    public function __toString()
+    {
+        
+    }
     
 }
