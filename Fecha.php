@@ -72,19 +72,95 @@ que retorne una nueva fecha, resultado de incrementar la fecha recibida por par√
      * @param int $cantDias 
      * @return String
     */
-    public function incrementar_un_dia($cantDias){
+    public function incrementar($cantDias){
 
         $dia_int = $this->getDia(); //Objeto dia
         $mes_int = $this->getMes(); //Objeto mes
         $anio_int = $this->getAnio(); //Objeto a√±o
-        
+        $nuevoDia = $dia_int;
         for ($i=1; $i <= $cantDias ; $i++) {
-            $dia_int = $dia_int + $i;
-            $nuevo_dia = $this->setDia($dia_int);
+            $nuevoDia ++;
+            
         }
-        $fechaNueva = $this->fecha = "{$nuevo_dia}/{$mes_int}/{$anio_int}" ;
-        return $fechaNueva;
+        return "{$nuevoDia}/{$mes_int}/{$anio_int}";
     }   
+
+    /**
+     * Devuelve la fecha de forma extendida coomo 13 de febrero de 2000
+     * 
+     * @param int 
+     * @return String
+     */
+    public function fechaExtendida(){
+
+        $dia_int = $this->getDia();
+        $mes_int = $this->getMes();
+        $anio_int = $this->getAnio();
+
+        switch ($mes_int) {
+            case 1:
+                $nombre_mes = "enero";
+                $fecha_ext = "{$dia_int} de ".$nombre_mes." de {$anio_int}";
+                break;
+
+            case 2:
+                $nombre_mes = "febrero";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+
+            case 3:
+                $nombre_mes = "marzo";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 4:
+                $nombre_mes = "abril";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 5:
+                $nombre_mes = "mayo";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 6:
+                $nombre_mes = "junio";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 7:
+                $nombre_mes = "julio";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 8:
+                $nombre_mes = "agosto";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 9:
+                $nombre_mes = "septiembre";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 10:
+                $nombre_mes = "octubre";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+            
+            case 11:
+                $nombre_mes = "noviembre";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+
+            case 12:
+                $nombre_mes = "diciembre";
+                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
+                break;
+        }
+
+        return $fecha_ext;
+    }
 
 
     public function __toString()
