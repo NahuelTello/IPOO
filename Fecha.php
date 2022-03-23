@@ -72,24 +72,24 @@ que retorne una nueva fecha, resultado de incrementar la fecha recibida por par√
      * @param int $cantDias 
      * @return String
     */
-    public function incrementar_un_ida($cantDias){
+    public function incrementar_un_dia($cantDias){
 
         $dia_int = $this->getDia(); //Objeto dia
         $mes_int = $this->getMes(); //Objeto mes
         $anio_int = $this->getAnio(); //Objeto a√±o
-        //$fechaNueva;
-        for ($i=1; $i <= $cantDias ; $i++) { 
-            $dia_int++;
-            $this->setDia($dia_int);
-            $nueva_fecha = $this->fecha = "{$this->setDia($dia_int)}/{$mes_int}/{$anio_int}";
+        
+        for ($i=1; $i <= $cantDias ; $i++) {
+            $dia_int = $dia_int + $i;
+            $nuevo_dia = $this->setDia($dia_int);
         }
-        return $nueva_fecha;
+        $fechaNueva = $this->fecha = "{$nuevo_dia}/{$mes_int}/{$anio_int}" ;
+        return $fechaNueva;
     }   
 
 
     public function __toString()
     {
-        
+        return "{$this->getDia()}/{$this->getMes()}/{$this->getAnio()}";
     }
     
 }
