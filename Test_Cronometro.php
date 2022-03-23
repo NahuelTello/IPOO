@@ -11,18 +11,17 @@ do{
     echo "1: Puesta a cero: "."\n".
     "2: Empesar cronometro"."\n".
     "3: SALIR"."\n".
-    "Ingrese una opcion: ";
+    "Ingrese una opcion: "."\n";
     $opcion = trim(fgets(STDIN));
     switch ($opcion) {
         case 1:
             $reloj->puesta_a_cero();
             echo "Reloj establecido: ".$reloj->__toString()."\n";
-            $finalizar = false;
             break;
         case 2:
             do{
-                if (($reloj->getHora() == 23)&&($reloj->getMinutos() == 59)&&($reloj->getSegundos() == 59)) {
-                    echo "El cronometro finalizo";
+                if ((($reloj->getHora()) == 23)&&(($reloj->getMinutos()) == 59)&&(($reloj->getSegundos()) == 59)) {
+                    echo "El cronometro finalizo! \n";
                     $finalizar = true;
                 } else {
                     $reloj->incrementar();

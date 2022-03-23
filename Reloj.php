@@ -29,14 +29,22 @@ class Reloj{
         return $this->segundos;
     }
 
+    /**
+     * @param int $h
+      */
     public function setHora($h){
         $this->horas = $h;
     }
 
+    /**
+     * @param int $m
+     */
     public function setMinutos($m){
         $this->minutos=$m;
     }
-
+    /**
+     * @param int $s
+     */
     public function setSegundos($s){
         $this->segundos = $s;
     }
