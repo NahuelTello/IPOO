@@ -94,15 +94,18 @@ que retorne una nueva fecha, resultado de incrementar la fecha recibida por parÃ
     public function incrementar_un_dia($n_dias){
         
         $n_dia = $this->getDia();
-        $n__mes = $this->getMes();
+        $n_mes = $this->getMes();
         $n_anio = $this->getAnio();
         $n_anio_bisiesto = $n_anio;
         
         if (($n_anio % 400 == 0)&&($n_anio % 4 == 0)&&($n_anio % 100 != 0)) {
-            for ($i=0; $i <= $n_dias ; $i++) {
-                $n_anio_bisiesto ++;
+            while ($n_dia <= 27) {
+                $n_dia ++;
             }
+        } else {
+            $n_dia = 0;
         }
+        return "{$n_dia}/{$n_mes}/{$n_anio_bisiesto}";
     }
 
     /**

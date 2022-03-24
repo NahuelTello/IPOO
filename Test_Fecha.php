@@ -16,6 +16,11 @@ $dias_incrementar = trim(fgets(STDIN));
 $nueva_fecha = $fecha->incrementar($dias_incrementar);
 echo "La nueva fecha es: " . $nueva_fecha . "\n";
 
+if ($fecha->getDia()==27 && $fecha->getMes()== 2) {
+    echo "Año bisiesto: " . $fecha->incrementar_un_dia($dias_incrementar);
+} else {
+    echo "La fecha ingresada no es un año bisiesto!";
+}
 
 //echo "Fecha con formato extendido: " .  . "\n";
 
