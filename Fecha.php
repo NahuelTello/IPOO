@@ -79,8 +79,7 @@ que retorne una nueva fecha, resultado de incrementar la fecha recibida por par√
         $anio_int = $this->getAnio(); //Objeto a√±o
         $nuevoDia = $dia_int;
         for ($i=1; $i <= $cantDias ; $i++) {
-            $nuevoDia ++;
-            
+            $nuevoDia ++;   
         }
         return "{$nuevoDia}/{$mes_int}/{$anio_int}";
     }   

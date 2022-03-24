@@ -10,11 +10,13 @@ echo "Ingrese un anio: " . "\n";
 $aa = trim(fgets(STDIN));
 
 $fecha = new Fecha($dd,$mm,$aa);
-
+echo "Fecha con formato extendido: ".$fecha->fechaExtendida() . "\n";
 echo "Cuantos dias quiere incrementar de la fecha: ". $fecha->__toString()."\n";
 $dias_incrementar = trim(fgets(STDIN));
-
 $nueva_fecha = $fecha->incrementar($dias_incrementar);
-echo "La nueva fecha es: " . $nueva_fecha."\n";
-$nueva_fecha = $fecha->fechaExtendida();
-echo "Fecha con formato extendido: " . $nueva_fecha . "\n";
+echo "La nueva fecha es: " . $nueva_fecha . "\n";
+
+
+//echo "Fecha con formato extendido: " .  . "\n";
+
+
