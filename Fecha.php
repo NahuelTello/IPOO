@@ -1,186 +1,130 @@
 <?php
 class Fecha{
 
-    //ATRIBUTOS
-    private $dia;
-    private $mes;
-    private $anio;
+    //Atributos
+    private $diaInt;
+    private $mesInt;
+    private $anioInt;
+    private $arrayMesesStr = array(
+        1 => ['nombre' => 'Enero', 'cantDias' => 31],
+        2 => ['nombre' => 'Febrero', 'cantDias' => 28],
+        3 => ['nombre' => 'Marzo', 'cantDias' => 31],
+        4 => ['nombre' => 'Abril', 'cantDias' => 30],
+        5 => ['nombre' => 'Mayo', 'cantDias' => 31],
+        6 => ['nombre' => 'Junio', 'cantDias' => 30],
+        7 => ['nombre' => 'Julio', 'cantDias' => 31],
+        8 => ['nombre' => 'Agosto', 'cantDias' => 31],
+        9 => ['nombre' => 'Septiembre', 'cantDias' => 30],
+        10 => ['nombre' => 'Octubre', 'cantDias' => 31],
+        11 => ['nombre' => 'Noviembre', 'cantDias' => 30],
+        12 => ['nombre' => 'Diciembre', 'cantDias' => 31]
+    );
 
-    //METODOS
-    public function __construct($dia,$mes,$anio)
+
+    //Constructo
+    public function __construct($dia, $mes, $anio)
     {
-        $this->dia=$dia;
-        $this->mes=$mes;
-        $this->anio=$anio;
-    }
-
-    public function getDia(){
-        return $this->dia;
-    }
-
-    public function getMes(){
-        return $this->mes;
-    }
-
-    public function getAnio(){
-        return $this->anio;
-    }
-
-    /**
-     * @param int $diaSet
-     * @return int
-     */
-    public function setDia($diaSet){
-        $this->dia = $diaSet;
-    }
-
-    /**
-     * @param int $mesSet
-     * @return int
-     */
-    public function setMes($mesSet)
-    {
-        $this->mes = $mesSet;
-    }
-
-    /**
-     * @param int $anioSet
-     * @return int
-     */
-    public function setAnio($anioSet)
-    {
-        $this->anio = $anioSet;
-    }
-
-
-    //public function fecha
-
-
-/* Implementar una función incremento, que reciba como parámetros un entero y una fecha, 
-que retorne una nueva fecha, resultado de incrementar la fecha recibida por parámetro en el numero de días definido por el parámetro entero. */
-    /**
-     * Incrementa los dias segun los ingresados y devuelve una nueva fecha
-     *  fecha $dia/$mes/$anio
-     * @param int $cantDias 
-     * @return String
-    */
-    public function incrementar($cantDias){
-
-        $dia_int = $this->getDia(); //Objeto dia
-        $mes_int = $this->getMes(); //Objeto mes
-        $anio_int = $this->getAnio(); //Objeto año
-        $nuevoDia = $dia_int;
-        for ($i=1; $i <= $cantDias ; $i++) {
-            $nuevoDia ++;   
+        $this->diaInt = $dia;
+        $this->mesInt = $mes;
+        $this->anioInt = $anio;
+        if ($this->tipoDeAnio()) {
+            $this->arrayMesesStr[1]['cantDias'] = 29;
         }
-        return "{$nuevoDia}/{$mes_int}/{$anio_int}";
-    }   
+    }
 
+    //Metodos
+    //getters 
+    public function getDia()
+    {
+        return $this->diaInt;
+    }
 
-    /**
-     * Incrementa de a un dia
-     * 
-     * @param int $n_dias
-     * @return String
-    */
-    public function incrementar_un_dia($n_dias){
-        
-        $n_dia = $this->getDia();
-        $n_mes = $this->getMes();
-        $n_anio = $this->getAnio();
-        $n_anio_bisiesto = $n_anio;
-        
-        if (($n_anio % 400 == 0)&&($n_anio % 4 == 0)&&($n_anio % 100 != 0)) {
-            while ($n_dia <= 27) {
-                $n_dia ++;
-            }
+    public function getMes()
+    {
+        return $this->mesInt;
+    }
+
+    public function getAnio()
+    {
+        return $this->anioInt;
+    }
+
+    //setters 
+    public function setDia($dia)
+    {
+        $this->diaInt = $dia;
+    }
+
+    public function setMes($mes)
+    {
+        $this->mesInt = $mes;
+    }
+
+    public function setAnio($anio)
+    {
+        $this->anioInt = $anio;
+    }
+
+    //fecha abreviada/toString
+    public function fechaAbreviada()
+    {
+        $fechaAbreviada = $this->diaInt . "/" . $this->mesInt . "/" . $this->anioInt;
+        return $fechaAbreviada;
+    }
+
+    //fecha extendida/toString
+    public function fechaExtendida()
+    {
+        $fechaExtendida = $this->diaInt . " de " . $this->arrayMesesStr[($this->mesInt) - 1]['nombre'] . " de " . $this->anioInt;
+        return $fechaExtendida;
+    }
+
+    //function para incrementar de a un día y realizar correcciones
+    public function incrementarUnDia()
+    {
+        if ($this->diaInt >= $this->arrayMesesStr[$this->mesInt]['cantDias']) {
+            $this->diaInt = 0;
+            if ($this->mesInt >= 12) {
+                $this->mesInt = 0;
+                $this->anioInt++;
+            } else {
+                $this->mesInt++;
+            };
         } else {
-            $n_dia = 0;
-        }
-        return "{$n_dia}/{$n_mes}/{$n_anio_bisiesto}";
+            $this->diaInt++;
+        };
     }
 
-    /**
-     * Devuelve la fecha de forma extendida coomo 13 de febrero de 2000
-     * 
-     * @param int 
-     * @return String
-     */
-    public function fechaExtendida(){
-
-        $dia_int = $this->getDia();
-        $mes_int = $this->getMes();
-        $anio_int = $this->getAnio();
-
-        switch ($mes_int) {
-            case 1:
-                $nombre_mes = "enero";
-                $fecha_ext = "{$dia_int} de ".$nombre_mes." de {$anio_int}";
-                break;
-
-            case 2:
-                $nombre_mes = "febrero";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-
-            case 3:
-                $nombre_mes = "marzo";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 4:
-                $nombre_mes = "abril";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 5:
-                $nombre_mes = "mayo";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 6:
-                $nombre_mes = "junio";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 7:
-                $nombre_mes = "julio";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 8:
-                $nombre_mes = "agosto";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 9:
-                $nombre_mes = "septiembre";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 10:
-                $nombre_mes = "octubre";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-            
-            case 11:
-                $nombre_mes = "noviembre";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-
-            case 12:
-                $nombre_mes = "diciembre";
-                $fecha_ext = "{$dia_int} de " . $nombre_mes . " de {$anio_int}";
-                break;
-        }
-
-        return $fecha_ext;
-    }
-
-
-    public function __toString()
+    //Saber si es un año bisiesto
+    public function tipoDeAnio()
     {
-        return "{$this->getDia()}/{$this->getMes()}/{$this->getAnio()}";
+        $esBisiesto = false;
+        if (($this->anioInt % 4) == 0) {
+            if ((($this->anioInt % 100) == 0)) {
+                if (($this->anioInt % 400) == 0) {
+                    $esBisiesto = true;
+                };
+            };
+        };
+        return $esBisiesto;
+    }
+
+    /**Metodo que recibe un entero y una fecha y retorna una nueva fecha, se debe ingresar la fecha como dd/mm/aaaa 
+     * @param int $diasInt 
+     * @param string $fechaCrear
+     * @return obj 
+     */
+    public function incrementar($diasInt, $fechaCrear)
+    {
+        $arrayFecha = explode("/", $fechaCrear);
+        $fechaDia = $arrayFecha[0];
+        $fechaMes = $arrayFecha[1];
+        $fechaAnio = $arrayFecha[2];
+        $objNuevaFecha = new Fecha($fechaDia, $fechaMes, $fechaAnio);
+        for ($i = 0; $i <= $diasInt; $i++) {
+            $objNuevaFecha->incrementarUnDia();
+        };
+        return $objNuevaFecha;
     }
     
 }
