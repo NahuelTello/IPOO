@@ -2,8 +2,8 @@
 /*1 Definir los siguientes términos: Objeto, clase, método y atributos.
 Objeto: es una forma ordenada de agrupar datos (los atributos) y operaciones a utilizar
 sobre esos datos (los métodos).
-Clase: es donde se indican cuales son los atributos y metodos que van a tenes todas las variables que sean de este tipo.
-Metodo: Sons los que definen el corportamiento de dicha clase o instancia
+Clase o Instancia: es donde se indican cuales son los atributos y metodos que van a tenes todas las variables que sean de este tipo.
+Metodo: Son los que definen el corportamiento de dicha clase o instancia
 atributos: determinan el estado actual de la instancia.
 */
 
