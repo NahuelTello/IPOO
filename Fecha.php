@@ -91,7 +91,7 @@ class Fecha{
         } elseif (($this->getDia() > $diaFebrero) && ($this->getMes == 2)) {
             $fecha_abr = "Esa fecha no es existente!";
         } else {
-            $fecha_abr = "{$this->getDia()}/{}/{$this->getAnio()}";
+            $fecha_abr = "{$this->getDia()}/{$this->getMes()}/{$this->getAnio()}";
         }
 
         return $fecha_abr;

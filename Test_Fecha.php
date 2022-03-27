@@ -14,6 +14,8 @@ $fecha = new Fecha($dd,$mm,$aa);
 echo "De la fecha: ".$fecha." Cuantos dias quiere incrementar? "."\n";
 $incrementar = trim(fgets(STDIN));
 $fecha->incrementar($incrementar);
-echo $fecha->incrementa_un_dia();
+echo $fecha->incrementa_un_dia() . "\n";
+echo $fecha->fechaAbreviada() . "\n";
+echo $fecha->fechaExtendida() . "\n";
 
 
