@@ -15,12 +15,12 @@ muestra la frase que permite recordar su contraseña. */
     private $ultimas_pass = ["","","",""];
 
     //METODOS
-    public function __construct($nombreUsuario,$password,$frasePass,$ultimasPass)
+    public function __construct($nombreUsuario,$password, $ffrase_pass, $ultimas_pass)
     {
         $this->userName = $nombreUsuario;
         $this->password = $password;
-        $this->frase_pass = $frasePass;
-        $this->ultimas_contrasenias = $ultimasPass;
+        $this->frase_pass = $ffrase_pass;
+        $this->ultimas_contrasenias = $ultimas_pass;
     }
 
     public function getUserName(){
@@ -42,8 +42,16 @@ muestra la frase que permite recordar su contraseña. */
         return $this->ultimas_contrasenias;
     }
 
-    public function setUserName($userName){
+    public function setUserName($name){
+        $this->userName = $name;
+    }
 
+    public function setPassword($pass){
+        $this->password = $pass;
+    }
+
+    public function setFrasePass($frase){
+        $this->frase_pass = $frase;
     }
 
 
