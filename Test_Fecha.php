@@ -10,18 +10,10 @@ echo "Ingrese un anio: " . "\n";
 $aa = trim(fgets(STDIN));
 
 $fecha = new Fecha($dd,$mm,$aa);
-echo "Fecha con formato extendido: ".$fecha->fechaExtendida() . "\n";
-echo "Cuantos dias quiere incrementar de la fecha: ". $fecha->__toString()."\n";
-$dias_incrementar = trim(fgets(STDIN));
-$nueva_fecha = $fecha->incrementar($dias_incrementar);
-echo "La nueva fecha es: " . $nueva_fecha . "\n";
 
-if ($fecha->getDia()==27 && $fecha->getMes()== 2) {
-    echo "Año bisiesto: " . $fecha->incrementar_un_dia($dias_incrementar);
-} else {
-    echo "La fecha ingresada no es un año bisiesto!";
-}
-
-//echo "Fecha con formato extendido: " .  . "\n";
+echo "De la fecha: ".$fecha." Cuantos dias quiere incrementar? "."\n";
+$incrementar = trim(fgets(STDIN));
+$fecha->incrementar($incrementar);
+echo $fecha->incrementa_un_dia();
 
 

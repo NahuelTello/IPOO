@@ -145,4 +145,9 @@ class Fecha{
         }
     }
 
+    public function __toString()
+    {
+        return "{$this->getDia()}/{$this->getMes()}/{$this->getAnio()}";
+    }
+
 }
