@@ -1,11 +1,7 @@
 <?php
 include 'Reloj.php';
 
-$finalizar = false;
-$hora = 0;
-$minutos = 0;
-$segundos = 0;
-$OBJ_reloj = new Reloj($hora, $minutos, $segundos);
+$OBJ_reloj = new Reloj(0,0,0);
 
 do{
     echo "1: Puesta a cero: "."\n".
@@ -15,6 +11,8 @@ do{
     $opcion = trim(fgets(STDIN));
     switch ($opcion) {
         case 1:
+            
+            //echo "Estado actual del cronometro: ".$OBJ_reloj->getCronometroStatus()."\n";
             $OBJ_reloj->puesta_a_cero();
             echo "Reloj establecido: ". $OBJ_reloj->__toString()."\n";
             break;

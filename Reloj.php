@@ -29,6 +29,11 @@ class Reloj{
         return $this->segundos;
     }
 
+    /* public function getCronometroStatus(){
+        $cronometro = $this->getHora().":".$this->getMinutos().":".$this->getSegundos();
+        return $cronometro;
+    } */
+
     /**
      * @param int $h
       */
