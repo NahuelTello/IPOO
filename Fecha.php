@@ -6,62 +6,58 @@ class Fecha{
     private $dia;
     private $mes;
     private $anio;
-    private $meses_Str = array(
-        1 => ['nombre' => 'enero', 'cantDias' => 31],
-        2 => ['nombre' => 'febrero', 'cantDias' => 28],
-        3 => ['nombre' => 'marzo', 'cantDias' => 31],
-        4 => ['nombre' => 'abril', 'cantDias' => 30],
-        5 => ['nombre' => 'mayo', 'cantDias' => 31],
-        6 => ['nombre' => 'junio', 'cantDias' => 30],
-        7 => ['nombre' => 'julio', 'cantDias' => 31],
-        8 => ['nombre' => 'agosto', 'cantDias' => 31],
-        9 => ['nombre' => 'septiembre', 'cantDias' => 30],
-        10 => ['nombre' => 'octubre', 'cantDias' => 31],
-        11 => ['nombre' => 'noviembre', 'cantDias' => 30],
-        12 => ['nombre' => 'diciembre', 'cantDias' => 31]
-    );
     
 
     //METODOS
 
-    public function __construct($dia_int,$mes_int,$anio_int)
-    {
-        $this->diaInt = $dia_int;
-        $this->mesInt = $mes_int;
-        $this->anioInt = $anio_int;
+    public function __construct($dia,$mes,$anio)
+    {   
+        $this->dia=$dia;
+        $this->mes=$mes;
+        $this->anio=$anio;
     }
 
     public function getDia(){
-        return $this->diaInt;
-    }
-
-    public function setDia($dia){
-        $this->diaInt = $dia;
+        return $this->dia;
     }
 
     public function getMes(){
-        return $this->mesInt;
-    }
-
-    public function setMes($mes){
-        $this->mesInt = $mes;
+        return $this->mes;
     }
 
     public function getAnio(){
-        return $this->anioInt;
+        return $this->anio;
+    }
+    
+    public function setDia($n_dia){
+        $this->dia = $n_dia;
     }
 
-    public function setAnio($anio){
-        $this->anioInt = $anio;
+    public function setMes($n_mes){
+        $this->mes = $n_mes;
     }
 
+    public function setAnio($n_anio){
+        $this->anio = $n_anio;
+    }
 
-    /**
-     * @param int $dias_incrementar
-     * @return String
-     * */
-    public function incremento_dias($dias_incrementar, $fecha){
+    //Retorna si el anio ingresado es bisiesto o no
+    public function esBisiesto(){
+        $bisiesto = (($this->getAnio() % 4 == 0 && $this->getAnio() % 100 != 0) || $this->getAnio() % 400 == 0 );
+        return $bisiesto;
+    }
+
+    public function incrementa_un_dia(){
         
+    }
+     
+    //incrementa una x cantidad de dias y retorna una nueva fecha
+    /**
+     * @param number
+     * @return String
+    */
+    public function incrementar($fecha, $cantDias)
+    {
     }
 
 }
