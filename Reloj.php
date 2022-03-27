@@ -50,9 +50,9 @@ class Reloj{
     }
 
     public function puesta_a_cero(){
-        $this->setHora(00);
-        $this->setMinutos(00);
-        $this->setSegundos(00);
+        $this->setHora(0);
+        $this->setMinutos(0);
+        $this->setSegundos(0);
     }
 
     /**
@@ -60,32 +60,39 @@ class Reloj{
      * 00:00:00
     */
     public function incrementar(){
-        $hora_int = $this->getHora();
-        $minutos_int = $this->getMinutos();
-        $segundos_int = $this->getSegundos();
+    
+        do{
+            if(($this->getHora()==23)&&($this->getMinutos()==59)&&($this->getSegundos()==59)){
+                //Si el cronometro llega a 23:59:59 inicia desde 0
+                $this->puesta_a_cero();
+                echo "{$this->getHora()}:{$this->getMinutos()}:{$this->getSegundos()}";
+            } elseif (($this->getMinutos()>=59)&&($this->getSegundos()>=59)) {
+                //Si el minuto llega a 0:59:59 se le incrementa una hora
+                $this->setHora($this->getHora()+1);
+                $this->setMinutos(0);
+            } 
 
-        if ($segundos_int < 59) { //Si los segundos son menores a 59 seg
-            $segundos_int++;
-            $this->setSegundos($segundos_int);
-        } else {
-            $this->setSegundos(00);
-            $minutos_int++;
-            if ($minutos_int < 59) { //Si los minutos son menores a 59 min
-                $this->setMinutos($minutos_int);
-            } else {
-                $this->setMinutos(00);
-                $hora_int++;
-                if($hora_int<23){
-                    $this->setHora($hora_int);
-                }else {
-                    $this->setHora(00);
-                }
+            //Segundos
+            if ($this->getSegundos() >= 59) {
+                //Si el segundo llega a 00:00:59 se incrementa un minuto
+                $this->setMinutos($this->getMinutos()+1);
+            } 
+            if($this->getSegundos() >=59){
+                //Cuando los segundos llegan a 59, inician nuevamente en 0
+                $this->setSegundos(0);
+            } else{
+                //Mientras los segundos no lleguen a 59, se ira incrementando
+                $this->setSegundos($this->getSegundos() + 1);
             }
-        }
+            $horas = $this->getHora();
+            echo $this;
+            
+        }while($horas = 24);
+        
     }
 
     public function __toString()
     {
-        return "{$this->getHora()}:{$this->getMinutos()}:{$this->getSegundos()}" ;
+        return "{$this->getHora()}:{$this->getMinutos()}:{$this->getSegundos()}"."\n" ;
     }
 }

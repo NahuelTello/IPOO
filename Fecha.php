@@ -6,7 +6,7 @@ class Fecha{
     private $dia;
     private $mes;
     private $anio;
-    private $MesesStr = array(
+    private $meses_Str = array(
         1 => ['nombre' => 'enero', 'cantDias' => 31],
         2 => ['nombre' => 'febrero', 'cantDias' => 28],
         3 => ['nombre' => 'marzo', 'cantDias' => 31],
@@ -56,7 +56,11 @@ class Fecha{
     }
 
 
-    public function incremento_dias(){
+    /**
+     * @param int $dias_incrementar
+     * @return String
+     * */
+    public function incremento_dias($dias_incrementar, $fecha){
         
     }
 
