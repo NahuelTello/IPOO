@@ -2,8 +2,7 @@
 class Login{
 
 /* Implementar una clase Login que almacene el nombreUsuario, contraseña, frase que permite recordar la
-contraseña ingresada y las ultimas 4 contraseñas utilizadas.  Implementar el método recordar que dado el usuario,
-muestra la frase que permite recordar su contraseña. */
+contraseña ingresada y las ultimas 4 contraseñas utilizadas. */
 
     //ATRIBUTOS
     private $nombreUsuario;
@@ -12,11 +11,11 @@ muestra la frase que permite recordar su contraseña. */
     private $ultimas_pass = ["","","",""];
 
     //METODOS
-    public function __construct($nombreUsuario,$password, $ffrase_pass, $ultimas_pass)
+    public function __construct($nombreUsuario,$password, $frase_pass, $ultimas_pass)
     {
         $this->userName = $nombreUsuario;
         $this->password = $password;
-        $this->frase_pass = $ffrase_pass;
+        $this->frase_pass = $frase_pass;
         $this->ultimas_contrasenias = $ultimas_pass; //Array
     }
 
@@ -84,7 +83,22 @@ encuentra dentro de las cuatro almacenadas). */
         
         return $validate;
     }
+//--------------------------------------------//
+/* Implementar el método recordar que dado el usuario,
+muestra la frase que permite recordar su contraseña. */
+    public function verFrase(){
+        echo "Frase: {$this->getFrasePass()}";
+    }
+//--------------------------------------------//
 
-
+    public function cambiarPassword(){
+        do{
+            echo "Ingrese la nueva contraseña: ";
+            $newPassword = trim(fgets(STDIN));
+            $contraseniaValidate = $this->validatePass($newPassword);
+            echo "\n";
+        }while($contraseniaValidate != false);
+        echo "Contraseña cambidad exitosamente!";
+    }
 
 }
