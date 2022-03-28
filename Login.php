@@ -2,10 +2,7 @@
 class Login{
 
 /* Implementar una clase Login que almacene el nombreUsuario, contraseña, frase que permite recordar la
-contraseña ingresada y las ultimas 4 contraseñas utilizadas. Implementar un método que permita validar
-una contraseña con la almacenada y un método para cambiar la contraseña actual por otra nueva, el
-sistema deja cambiar la contraseña siempre y cuando esta no haya sido usada recientemente (es decir no se
-encuentra dentro de las cuatro almacenadas). Implementar el método recordar que dado el usuario,
+contraseña ingresada y las ultimas 4 contraseñas utilizadas.  Implementar el método recordar que dado el usuario,
 muestra la frase que permite recordar su contraseña. */
 
     //ATRIBUTOS
@@ -20,41 +17,73 @@ muestra la frase que permite recordar su contraseña. */
         $this->userName = $nombreUsuario;
         $this->password = $password;
         $this->frase_pass = $ffrase_pass;
-        $this->ultimas_contrasenias = $ultimas_pass;
+        $this->ultimas_contrasenias = $ultimas_pass; //Array
     }
 
     public function getUserName(){
         return $this->userName;
     }
-
+    public function setUserName($name)
+    {
+        $this->userName = $name;
+    } 
+//--------------------------------------------//
     public function getPassword()
     {
         return $this->password;
     }
-
+    public function setPassword($pass)
+    {
+        $this->password = $pass;
+    }
+//--------------------------------------------//
     public function getFrasePass()
     {
         return $this->frase_pass;
     }
-
+    public function setFrasePass($frase)
+    {
+        $this->frase_pass = $frase;
+    }
+//--------------------------------------------//
     public function getUltimasContrasenias()
     {
         return $this->ultimas_contrasenias;
     }
-
-    public function setUserName($name){
-        $this->userName = $name;
+    public function setUltimasContrasenias($passNew)
+    {
+        $this->frase_pass = $passNew; //Como hago un seteo de arreglos?
     }
+//--------------------------------------------//
 
-    public function setPassword($pass){
-        $this->password = $pass;
+    public function almacenarPassword($newPassword){
+        $this->setUltimasContrasenias($this->getUltimasContrasenias());
+        $this->setUltimasContrasenias($newPassword);
     }
-
-    public function setFrasePass($frase){
-        $this->frase_pass = $frase;
+//--------------------------------------------//
+/**Implementar un método que permita validar
+una contraseña con la almacenada y un método para cambiar la contraseña actual por otra nueva, el
+sistema deja cambiar la contraseña siempre y cuando esta no haya sido usada recientemente (es decir no se
+encuentra dentro de las cuatro almacenadas). */
+    public function validatePass($password){ //CONSULTAR
+        $validate = false;  
+        $i = 0;
+        do{
+            if (($password == $this->getPassword()) || ($password == $this->getUltimasContrasenias()[$i])) {
+                echo "Contraseña usada recientemente";
+                $validate = true;
+            } else {
+                $this->almacenarPassword($password);
+                echo "Contraseña guardada! \n";
+                echo "Ingrese una nueva frase para recordar su contraseña: " ;
+                $fraseContrasenia = trim(fgets(STDIN));
+                $this->setFrasePass($fraseContrasenia);
+            }
+            $i++;
+        }while($i<4);
+        
+        return $validate;
     }
-
-
 
 
 
