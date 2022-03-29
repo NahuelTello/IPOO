@@ -1,104 +1,124 @@
 <?php
 class Login{
 
-/* Implementar una clase Login que almacene el nombreUsuario, contraseña, frase que permite recordar la
+    /* Implementar una clase Login que almacene el nombreUsuario, contraseña, frase que permite recordar la
 contraseña ingresada y las ultimas 4 contraseñas utilizadas. */
 
     //ATRIBUTOS
-    private $nombreUsuario;
+    private $user;
     private $password;
-    private $frase_pass;
-    private $ultimas_pass = ["","","",""];
+    private $password1;
+    private $password2;
+    private $password3;
+    private $frase;
 
     //METODOS
-    public function __construct($nombreUsuario,$password, $frase_pass, $ultimas_pass)
+    public function __construct($user,$password, $frasePass)
     {
-        $this->userName = $nombreUsuario;
-        $this->password = $password;
-        $this->frase_pass = $frase_pass;
-        $this->ultimas_contrasenias = $ultimas_pass; //Array
+        $this->usuario = $user;
+        $this->contrasenia = $password;
+        $this->contrasenia1 = $password;
+        $this->contrasenia2 = $password;
+        $this->contrasenia3 = $password;
+        $this->frase = $frasePass;
     }
 
-    public function getUserName(){
-        return $this->userName;
+    public function getUser(){
+        return $this->usuario;
     }
-    public function setUserName($name)
-    {
-        $this->userName = $name;
-    } 
-//--------------------------------------------//
-    public function getPassword()
-    {
-        return $this->password;
+
+    public function setUser($userName){
+        $this->usuario = $userName;
     }
-    public function setPassword($pass)
-    {
-        $this->password = $pass;
+
+    public function getPassword(){
+        return $this->contrasenia;
     }
-//--------------------------------------------//
-    public function getFrasePass()
-    {
-        return $this->frase_pass;
+
+    public function setPassword($userPassword){
+        $this->contrasenia = $userPassword;
     }
-    public function setFrasePass($frase)
-    {
-        $this->frase_pass = $frase;
+
+    public function getPassword1(){
+        return $this->contrasenia1;
     }
-//--------------------------------------------//
-    public function getUltimasContrasenias()
-    {
-        return $this->ultimas_contrasenias;
+
+    public function setPassword1($userPassword){
+        $this->contrasenia1 = $userPassword;
     }
-    public function setUltimasContrasenias($passNew)
+
+    public function getPassword2(){
+        return $this->contrasenia2;
+    }
+
+    public function setPassword2($userPassword){
+        $this->contrasenia2 = $userPassword;
+    }
+
+    public function getPassword3()
     {
-        $this->frase_pass = $passNew; //Como hago un seteo de arreglos?
+        return $this->contrasenia3;
+    }
+
+    public function setPassword3($userPassword)
+    {
+        $this->contrasenia3 = $userPassword;
+    }
+
+    public function getFrase(){
+        return $this->frase;
+    }
+
+    public function setFrase($frasePass){
+        $this->frase = $frasePass;
+    }
+
+
+/* Implementar el método recordar que dado el usuario,
+muestra la frase que permite recordar su contraseña. */
+    public function verFrase(){
+        echo "Frase: {$this->getFrase()}";
     }
 //--------------------------------------------//
 
-    public function almacenarPassword($newPassword){
-        $this->setUltimasContrasenias($this->getUltimasContrasenias());
-        $this->setUltimasContrasenias($newPassword);
-    }
-//--------------------------------------------//
 /**Implementar un método que permita validar
 una contraseña con la almacenada y un método para cambiar la contraseña actual por otra nueva, el
 sistema deja cambiar la contraseña siempre y cuando esta no haya sido usada recientemente (es decir no se
 encuentra dentro de las cuatro almacenadas). */
     public function validatePass($password){ //CONSULTAR
         $validate = false;  
-        $i = 0;
-        do{
-            if (($password == $this->getPassword()) || ($password == $this->getUltimasContrasenias()[$i])) {
-                echo "Contraseña usada recientemente";
-                $validate = true;
-            } else {
-                $this->almacenarPassword($password);
-                echo "Contraseña guardada! \n";
-                echo "Ingrese una nueva frase para recordar su contraseña: " ;
-                $fraseContrasenia = trim(fgets(STDIN));
-                $this->setFrasePass($fraseContrasenia);
-            }
-            $i++;
-        }while($i<4);
+        if ($password == $this->getPassword() || $password == $this->getPassword1() || $password == $this->getPassword2() || $password == $this->getPassword3()) {
+            echo "Contraseña usada recientemente \n";
+            $validate = true;
+        } else {
+            $this->guardarContrasenia($password);
+            echo "Contraseña guardada! \n";
+            echo "Ingrese una nueva frase para recordar su contraseña: \n";
+            $fraseContrasenia = trim(fgets(STDIN));
+            $this->setFrase($fraseContrasenia);
+        }
         
         return $validate;
     }
-//--------------------------------------------//
-/* Implementar el método recordar que dado el usuario,
-muestra la frase que permite recordar su contraseña. */
-    public function verFrase(){
-        echo "Frase: {$this->getFrasePass()}";
+
+    private function guardarContrasenia($contraseniaNueva)
+    {
+
+        $this->setPassword3($this->getPassword2());
+        $this->setPassword2($this->getPassword1());
+        $this->setPassword1($this->getPassword());
+        $this->setPassword($contraseniaNueva);
     }
 //--------------------------------------------//
 
     public function cambiarPassword(){
         do{
-            echo "Ingrese la nueva contraseña: ";
+            echo "Ingrese la nueva contraseña: \n";
             $newPassword = trim(fgets(STDIN));
             $contraseniaValidate = $this->validatePass($newPassword);
             echo "\n";
-        }while($contraseniaValidate != false);
-        echo "Contraseña cambidad exitosamente!";
+        }while($contraseniaValidate == true);
+        echo "Contraseña cambidad exitosamente!\n";
     }
 
 }
