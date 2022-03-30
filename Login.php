@@ -81,10 +81,10 @@ muestra la frase que permite recordar su contraseña. */
     }
 //--------------------------------------------//
 
-/**Implementar un método que permita validar
-una contraseña con la almacenada y un método para cambiar la contraseña actual por otra nueva, el
-sistema deja cambiar la contraseña siempre y cuando esta no haya sido usada recientemente (es decir no se
-encuentra dentro de las cuatro almacenadas). */
+/**
+ * @param number
+ * @return boolean
+*/
     public function validatePass($password){ //CONSULTAR
         $validate = false;  
         if ($password == $this->getPassword() || $password == $this->getPassword1() || $password == $this->getPassword2() || $password == $this->getPassword3()) {
