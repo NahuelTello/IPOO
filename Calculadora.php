@@ -2,7 +2,6 @@
 class Calculadora{
     private $num1;
     private $num2;
-    private $resultado;
 
     public function __construct($numero1, $numero2){
         $this->num1 = $numero1;
