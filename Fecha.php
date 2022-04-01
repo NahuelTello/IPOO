@@ -101,8 +101,7 @@ class Fecha{
     private function incrementar_dia_limite(){
         $diaFebrero = $this->getDiaFebrero();
         $countDias = 0;
-        if
-        (($this->getDia() >= 30) && (($this->getMes() == 1) || ($this->getMes() == 4) || ($this->getMes() == 6) || ($this->getMes() == 9) || ($this->getMes() == 11))) {
+        if (($this->getDia() >= 30) && (($this->getMes() == 1) || ($this->getMes() == 4) || ($this->getMes() == 6) || ($this->getMes() == 9) || ($this->getMes() == 11))) {
             while ($countDias >= 30) {
                 $countDias ++;
             }
@@ -140,7 +139,7 @@ class Fecha{
      */
     public function incrementar($cantDias)
     {
-        for ($i=1; $i <$cantDias ; $i++) { 
+        for ($i=1; $i <= $cantDias ; $i++) { 
             $this->incrementa_un_dia();
         }
     }
